@@ -1,0 +1,15 @@
+<html>
+  <head></head>
+  <body>
+    <!-- range 迭代用法 -->
+    <!-- 下方'.'為外部引入之data -->
+    {{range .}}
+      <!-- 下方'.'為迭代裡的item -->
+      <div>{{.}}</div>
+    {{end}}
+
+    {{range $index, $value := .}}
+      <div>{{$index}} - {{$value}}</div>
+    {{end}}
+  </body>
+</html>
