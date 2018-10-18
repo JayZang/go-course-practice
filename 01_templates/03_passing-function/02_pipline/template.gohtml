@@ -1,0 +1,13 @@
+<html>
+  <head></head>
+  <body>
+    <div>{{.}}</div>
+    <div>{{double .}}</div>
+
+    <!-- 將前面的結果值傳遞至後面的函數當作參數後執行 -->
+    <div>{{. | double}}</div>
+    <div>{{. | double | square}}</div>
+    <div>{{. | double | square | sqRoot}}</div>
+  </body>
+</html>
+ 
