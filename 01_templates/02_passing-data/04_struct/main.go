@@ -14,6 +14,11 @@ type People struct {
 	Old  int
 }
 
+// 可在 template 調用 struct 的函數
+func (p People) DoubleOld() int {
+	return p.Old * 2
+}
+
 func init() {
 	tpl = template.Must(template.ParseFiles("template.gohtml"))
 }
