@@ -1,0 +1,56 @@
+<html>
+  <head></head>
+  <body>
+    <div>The request method : {{.Method}}</div>
+
+    <hr>
+
+    <div>The request URL :</div>
+    <ul>
+      <li>Scheme : {{.URL.Scheme}}</li>
+      <li>Opaque : {{.URL.Opaque}}</li>
+      <li>User : {{.URL.User}}</li>
+      <li>Host : {{.URL.Host}}</li>
+      <li>Path : {{.URL.Path}}</li>
+      <li>RawPath : {{.URL.RawPath}}</li>
+      <li>ForceQuery : {{.URL.ForceQuery}}</li>
+      <li>RawQuery : {{.URL.RawQuery}}</li>
+      <li>Fragment : {{.URL.Fragment}}</li>
+    </ul>
+
+    <hr>
+
+    <div>The request header :</div>
+    {{range $key, $value := .Header}}
+      <p><strong>{{$key}}</strong></p>
+      <ul>
+        {{range $index, $val := $value}}
+          <li>{{$val}}</li>
+        {{end}}
+      </ul>
+    {{end}}
+
+    <hr>
+
+    <div>The request content length : {{.ContentLength}}</div>
+
+    <hr>
+
+    <div>The request variable name $ key :</div>
+    {{range $key, $value := .Submissions}}
+    <p><strong>{{$key}}</strong></p>
+    <ul>
+      {{range $index, $val := $value}}
+        <li>{{$val}}</li>
+      {{end}}
+    </ul>
+    {{end}}
+
+    <div></div>
+    <form action="/" method="POST">
+      <input type="text" name="account" placeholder="account">
+      <input type="password" name="password" placeholder="password">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
