@@ -34,4 +34,6 @@ func main() {
 	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("./assets"))))
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	http.NotFoundHandler()
 }
