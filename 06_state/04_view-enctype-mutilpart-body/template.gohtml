@@ -1,0 +1,14 @@
+<html>
+  <head></head>
+  <body>
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <input type="text" placeholder="Name" name="name">
+      <input type="text" placeholder="Old" name="old">
+      <input type="file" name="file">
+      <input type="submit">
+    </form>
+    
+    <h1>Body:</h1>
+    <div>{{.}}</div>
+  </body>
+</html>
