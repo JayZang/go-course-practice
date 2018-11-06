@@ -41,21 +41,21 @@ func more(res http.ResponseWriter, req *http.Request) {
 
 func read(res http.ResponseWriter, req *http.Request) {
 	c1, err := req.Cookie("my-cookie")
-	if err != nil {
+	if err == http.ErrNoCookie {
 		log.Println(err)
 	} else {
 		fmt.Fprintln(res, "YOUR COOKIE:", c1)
 	}
 
 	c2, err := req.Cookie("general")
-	if err != nil {
+	if err == http.ErrNoCookie {
 		log.Println(err)
 	} else {
 		fmt.Fprintln(res, "YOUR COOKIE:", c2)
 	}
 
 	c3, err := req.Cookie("more")
-	if err != nil {
+	if err == http.ErrNoCookie {
 		log.Println(err)
 	} else {
 		fmt.Fprintln(res, "YOUR COOKIE:", c3)
