@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>html body script</title>
+  </head>
+  <body>
+    <h1>make a request</h1>
+
+    <script>
+      document.querySelector('h1').onclick = makeRequest
+
+      function makeRequest() {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', '/foo', true)
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            alert(xhr.responseText)
+          }
+        }
+        xhr.send()
+      }
+    </script>
+  </body>
+</html>
