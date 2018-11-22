@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>SPA Web Page</h1>
+
+    <h2>新增使用者</h2>
+    <input type="text" name="name" class="create-user-name" placeholder="Name">
+    <input type="text" name="gender" class="create-user-gender" placeholder="Gender">
+    <input type="text" name="age" class="create-user-age" placeholder="Age">
+    <input type="button" class="create-user-btn" value="新增">
+
+    <h3>查詢使用者</h3>
+    <input type="text" class="query-userId" placeholder="User ID">
+    <input type="button" class="queryUserBtn" value="查詢">
+    
+    <h3>刪除使用者</h3>
+    <input type="text" class="delete-userId" placeholder="User ID">
+    <input type="button" class="deleteUserBtn" value="刪除">
+
+    <script>
+      // 新增使用者
+      $(".create-user-btn").click(function() {
+        let data = {
+          name: $(".create-user-name").val(),
+          gender: $(".create-user-gender").val(),
+          age: $(".create-user-age").val()
+        }
+
+        $.post({
+          url: "/user",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          dataType: "json",
+
+          // 使用此種方式 request body 才會是 json 格式
+          // 如果給予物件會是 url 參數編碼格式
+          data: JSON.stringify(data),
+          success: function(res) {
+            console.log("新增用戶之資訊：", res)
+          }
+        })
+      })
+
+      // 查詢用戶
+      $(".queryUserBtn").click(function() {
+        let uid = $(".query-userId").val()
+        $.getJSON(`/user/${uid}`, (res) => {
+          console.log("查詢用戶之資訊：", res)
+        })
+      })
+
+      // 刪除用戶
+      $(".deleteUserBtn").click(function () {
+        let uid = $(".delete-userId").val()
+        $.ajax({
+          url: `/user/${uid}`,
+          method: "DELETE",
+          success: (res) => {
+            console.log("刪除成功！")
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

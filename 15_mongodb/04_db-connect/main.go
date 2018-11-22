@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"playground/go-web-course/15_mongodb/04_db-connect/controllers"
 
@@ -11,15 +12,16 @@ import (
 )
 
 func main() {
+	tpl := template.Must(template.ParseGlob("./templates/*"))
 	router := httprouter.New()
 	userController := controllers.NewUserController(getSession())
-	indexController := controllers.NewIndexController()
+	indexController := controllers.NewIndexController(tpl)
 
 	router.GET("/", indexController.Index)
 
-	router.GET("/user/:ID", userController.GetUser)
 	router.POST("/user", userController.CreateUser)
-	router.DELETE("/user", userController.DeleteUser)
+	router.GET("/user/:ID", userController.GetUser)
+	router.DELETE("/user/:ID", userController.DeleteUser)
 
 	http.ListenAndServe(":8080", router)
 }
